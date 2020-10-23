@@ -9,6 +9,6 @@ scraper.py - scraping hashes info from blockchain.com every minute and storing t
 1. Check that both files are in the same repository
 2. In bash terminal type:
 
-	mongo_setup
+	mongo_setup.bash
 	
 	python3 scraper.py
