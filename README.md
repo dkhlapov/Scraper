@@ -1,6 +1,7 @@
 # Scraper
 
 mongo_setup.bash - setting up mongodb on Ubuntu 20.04.1
+
 scraper.py - scraping hash info from blockchain.com and stroing it in a mongodb database
 
 # Usage
