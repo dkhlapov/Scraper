@@ -4,11 +4,15 @@ import numpy as np
 import pandas as pd
 import time as tm
 import logging
+import pymongo as mongo
 
+client = mongo.MongoClient("mongodb://127.0.0.1:27017")
 df_final = pd.DataFrame()
-FORMAT = 'Hash: %(hash)s Time: %(time)s BTC: %(btc)f USD: %(usd)f'
-logging.basicConfig(filename="tophashes.log", level=logging.INFO, format=FORMAT, filemode='w')
-logger = logging.getLogger()
+#FORMAT = 'Hash: %(hash)s Time: %(time)s BTC: %(btc)f USD: %(usd)f'
+#logging.basicConfig(filename="tophashes.log", level=logging.INFO, format=FORMAT, filemode='w')
+#logger = logging.getLogger()
+scraper_db = client['scraper']
+col_hashes = scraper_db['hashes']
 while True:
     link = urllib.request.urlopen("https://www.blockchain.com/btc/unconfirmed-transactions")
     soup = BeautifulSoup(link, 'html.parser')
@@ -24,12 +28,13 @@ while True:
             usd.append(float(info[i].string[1:].replace(",", "")))
     for row in hashes_raw:
         hashes.append(row.string)
-    dict = {'hash': hashes, 'time': time, 'btc': btc, 'usd': usd}
+    dict = {'hash':hashes, 'time': time, 'btc': btc, 'usd': usd}
     df = pd.DataFrame(data=dict)
     df = df.sort_values(by='usd', ascending=False)
     records = df.head(1).to_dict('records')
     d = records[0]
+    insert_hash = col_hashes.insert_one(d)
     #df_final = df_final.append(df.head(1))
-    logger.info('', extra=d)
+    #logger.info('', extra=d)
     tm.sleep(60)
 #print(df_final)
