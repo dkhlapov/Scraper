@@ -1,6 +1,8 @@
 # Scraper
 
-mongo_setup.bash - setting up mongodb on Ubuntu 20.04.1
+mongo_setup.bash - setting up MongoDB on Ubuntu 20.04.1
+
+redis_setup.bash - setting up Redis on Ubuntu 20.04.1
 
 scraper.py - scraping hashes info from blockchain.com every minute and storing the highest value hash in a mongodb database
 
@@ -10,5 +12,7 @@ scraper.py - scraping hashes info from blockchain.com every minute and storing t
 2. In bash terminal type:
 
 	mongo_setup.bash
+	
+	redis_setup.bash
 	
 	python3 scraper.py
