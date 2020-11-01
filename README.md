@@ -11,4 +11,6 @@ scraper.py - scraping hashes info from blockchain.com every minute and storing t
 
 	mongo_setup.bash
 	
+	redis_setup.bash
+	
 	python3 scraper.py
