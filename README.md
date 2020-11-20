@@ -4,7 +4,7 @@ mongo_setup.bash - setting up MongoDB on Ubuntu 20.04.1
 
 redis_setup.bash - setting up Redis on Ubuntu 20.04.1
 
-scraper_to_redis.py - scraping hashes info from blockchain.com and caches it in a Redis key-value database. The keys are set to expire every minute
+scraper_to_redis.py - scraping hashes info from blockchain.com and caches it in a Redis key-value database. The keys are set to expire every minute.
 
 redis_to_mongo.py - the main script. Gets the values from Redis, sorts the values, takes the highest and puts it in a MongoDB every minute.
 
