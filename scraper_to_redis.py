@@ -1,6 +1,7 @@
 import json
 import re
 import urllib.request
+from datetime import timedelta
 
 import redis
 from bs4 import BeautifulSoup
@@ -18,7 +19,11 @@ def redis_setup():
                                             string=re.compile(r'\d\d:\d\d'))]
     dollars = [a.string for a in soup.find_all("span", class_="sc-1ryi78w-0 gCzMgE sc-16b9dsl-1 kUAhZx u3ufsr-0 fGQJzg",
                                                string=re.compile(r'\$\d+,*\d*\.\d+'))]
-    dict = {}
+    d = {}
     for (item_hashes, item_time, item_btc, item_usd) in zip(hashes_raw, time, bitcoin, dollars):
-        dict[item_hashes] = {'time': item_time, 'btc': item_btc, 'usd': item_usd}
-    r.execute_command('JSON.SET', 'object', '.', json.dumps(dict), ex=60)
+        d[item_hashes] = {'time': item_time, 'btc': item_btc, 'usd': item_usd}
+    with r.pipeline() as pipe:
+        for hash, properties in d.items():
+            pipe.hmset(hash, properties)
+            pipe.expire(hash, timedelta(seconds=60))
+        pipe.execute()
