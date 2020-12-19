@@ -12,7 +12,7 @@ def redis_setup():
     link = urllib.request.urlopen("https://www.blockchain.com/btc/unconfirmed-transactions")
     soup = BeautifulSoup(link, 'html.parser')
     hashes_raw = [a.string for a in
-                  soup.find_all("a", class_="sc-1r996ns-0 gzrtQD sc-1tbyx6t-1 kXxRxe iklhnl-0 boNhIO d53qjk-0 jmTmMY")]
+                  soup.find_all("a", class_="sc-1r996ns-0 fLwyDF sc-1tbyx6t-1 kCGMTY iklhnl-0 eEewhk d53qjk-0 ctEFcK")]
     bitcoin = [a.string[:-4].replace(',','') for a in soup.find_all("span", class_="sc-1ryi78w-0 cILyoi sc-16b9dsl-1 ZwupP u3ufsr-0 eQTRKC",
                                                string=re.compile(r'\d+,*\d*\.\d+ BTC'))]
     time = [a.string for a in soup.find_all("span", class_="sc-1ryi78w-0 cILyoi sc-16b9dsl-1 ZwupP u3ufsr-0 eQTRKC",
