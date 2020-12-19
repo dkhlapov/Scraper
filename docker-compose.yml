@@ -1,0 +1,4 @@
+version: "3"
+services:
+  scraper:
+    ports: 6379:6379
