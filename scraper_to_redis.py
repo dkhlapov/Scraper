@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 
 def redis_setup():
-    r = redis.Redis(host='172.19.0.2', port=6379)
+    r = redis.Redis(host='localhost', port=6379)
     link = urllib.request.urlopen("https://www.blockchain.com/btc/unconfirmed-transactions")
     soup = BeautifulSoup(link, 'html.parser')
     hashes_raw = [a.string for a in
