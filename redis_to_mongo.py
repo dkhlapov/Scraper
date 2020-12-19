@@ -3,7 +3,7 @@ import redis
 from scraper_to_redis import redis_setup
 import time
 
-r = redis.Redis(host='localhost', port=6379)
+r = redis.Redis(host='172.19.0.2', port=6379)
 client = mongo.MongoClient("mongodb://172.18.0.3")
 scraper_db = client['scraper']
 col_hashes = scraper_db['hashes']
