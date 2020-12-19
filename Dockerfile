@@ -3,4 +3,5 @@ RUN apk update && apk upgrade
 RUN apk add --no-cache mongodb && apk add --no-cache redis
 COPY . .
 RUN pip install -r requirements.txt
+EXPOSE 6379
 ENTRYPOINT ["python", "redis_to_mongo.py"]
