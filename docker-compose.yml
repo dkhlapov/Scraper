@@ -1,5 +1,5 @@
 version: "3"
 services:
-  scraper:
+  scraper_service:
     build: .
     image: scraper
