@@ -3,4 +3,4 @@ services:
   scraper:
     build: .
     ports: 
-      - 6379:6379
+      - 6379:80
