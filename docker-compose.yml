@@ -1,13 +1,11 @@
 version: "3"
 services:
-  scraper_service:
+  scraper:
     build: .
     image: scraper
     
-  redis_service:
-    build: .
+  redis:
     image: redis
     
-   mongo_service:
-    build: .
+   mongo:
     image: mongo
