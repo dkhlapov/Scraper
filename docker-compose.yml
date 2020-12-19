@@ -3,7 +3,9 @@ services:
   scraper_service:
     build: .
     image: scraper
+    
   redis_service:
     image: redis
+    
    mongo_service:
     image: mongo
