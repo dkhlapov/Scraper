@@ -2,10 +2,10 @@ version: "3"
 services:
   scraper:
     build: .
-    image: scraper
+    image: "scraper"
     
   redis:
-    image: redis
+    image: "redis"
     
   mongo:
-    image: mongo
+    image: "mongo"
